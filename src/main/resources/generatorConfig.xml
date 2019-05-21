@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <context id="context">
+        <!-- 是否生成注释 -->
+        <commentGenerator type="com.ays.tools.mybatis.RemarksCommentGenerator">
+        </commentGenerator>
+        <!-- 数据库连接 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/test"
+                        userId="root" password="123456" />
+
+        <!-- 生成的包名和工程名 -->
+        <javaModelGenerator targetPackage="com.ays.model"
+                            targetProject="src/main/java"/>
+        <sqlMapGenerator targetPackage="mapping"
+                         targetProject="src/main/resources" />
+        <javaClientGenerator targetPackage="com.ays.dao"
+                             targetProject="src/main/java" type="XMLMAPPER" />
+
+        <!-- 数据库表 -->
+        <table tableName="t_rank" domainObjectName="Rank"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+    </context>
+</generatorConfiguration>
