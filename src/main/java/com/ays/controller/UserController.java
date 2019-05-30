@@ -18,11 +18,13 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
+
 /**
  * 功能描述:
+ *
  * @Author cp3_Ays
  * @Date 15:11 2019/4/15
-**/
+ **/
 @Controller
 @RequestMapping("/user")
 @Api(value = "用户信息", description = "用户信息", produces = MediaType.APPLICATION_JSON)
@@ -35,23 +37,24 @@ public class UserController {
     private DepartmentService departmentService;
 
     @RequestMapping("/addUi.htm")
-    public String addUi(HttpServletRequest request,Model model){
+    public String addUi(HttpServletRequest request, Model model) {
+        User user = new User();
         List<Rank> ranks = rankService.getAllRank();
         Department department = new Department();
         List<Department> depts = departmentService.getDepartmentListByCon(department);
-        model.addAttribute("ranks",ranks);
-        model.addAttribute("depts",depts);
+        model.addAttribute("ranks", ranks);
+        model.addAttribute("depts", depts);
         return "user/add";
     }
 
-    @RequestMapping(value="/add",method = RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
     public JSONObject add(HttpServletRequest request, User user) {
         JSONObject json = new JSONObject();
-        if(userService.addUser(user) > 0){
-            json.put("msg","添加成功");
-        }else{
-            json.put("msg","添加失败,请稍后添加!");
+        if (userService.addUser(user) > 0) {
+            json.put("msg", "添加成功");
+        } else {
+            json.put("msg", "添加失败,请稍后添加!");
         }
         return json;
     }
